@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 8px;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button.delete {
+            background-color: #f44336;
+            margin-left: 10px;
+            padding: 2px 8px;
+        }
+        button.toggle {
+            background-color: #2196F3;
+            margin-left: 10px;
+            padding: 2px 8px;
+        }
+        button.logout {
+            background-color: #555;
+            margin-left: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        li.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .todo-text {
+            flex-grow: 1;
+        }
+        .status {
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #dff2bf;
+            color: #4F8A10;
+        }
+        .error {
+            background-color: #ffbaba;
+            color: #D8000C;
+        }
+        .auth-container, .todo-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo App</h1>
+
+    <!-- 🔐 Autentisering -->
+    <div id="auth-section" class="auth-container">
+        <div id="login-form">
+            <h2>Logg inn</h2>
+            <input type="text" id="brukernavn" placeholder="Brukernavn">
+            <input type="password" id="passord" placeholder="Passord">
+            <button onclick="loggInn()">Logg inn</button>
+            <button onclick="visRegistrering()">Registrer deg</button>
+            <p id="login-status" class="status"></p>
+        </div>
+
+        <div id="register-form" class="hidden">
+            <h2>Registrer deg</h2>
+            <input type="text" id="reg-brukernavn" placeholder="Velg brukernavn">
+            <input type="password" id="reg-passord" placeholder="Velg passord">
+            <button onclick="registrer()">Registrer</button>
+            <button onclick="visInnlogging()">Tilbake til innlogging</button>
+            <p id="register-status" class="status"></p>
+        </div>
+    </div>
+
+    <!-- ✅ Todo-liste -->
+    <div id="todo-section" class="todo-container hidden">
+        <div class="user-info">
+            <h2>Velkommen <span id="user-name"></span>!</h2>
+            <button class="logout" onclick="loggUt()">Logg ut</button>
+        </div>
+        
+        <h3>Mine oppgaver</h3>
+        <div id="todo-status" class="status"></div>
+        <ul id="todo-list"></ul>
+        
+        <div class="todo-input">
+            <input type="text" id="todo-input" placeholder="Skriv en ny oppgave...">
+            <button id="todo-button">Legg til</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
